@@ -1,4 +1,4 @@
-#N canvas 1202 95 450 300 10;
+#N canvas 990 95 450 300 10;
 #X obj 198 206 outlet;
 #X obj 197 163 delay;
 #X obj 173 33 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -9,14 +9,14 @@
 #X obj 55 15 inlet;
 #X obj 178 56 metro 0;
 #X obj 198 137 + \$1;
-#X obj 193 95 drunk \$2 \$2;
 #X text 24 77 pulseargs: 1- min2- max3- step;
+#X obj 193 95 random \$2;
 #X connect 1 0 0 0;
 #X connect 1 0 3 0;
 #X connect 2 0 6 0;
 #X connect 5 0 2 0;
-#X connect 6 0 8 0;
+#X connect 6 0 9 0;
 #X connect 7 0 1 0;
 #X connect 7 0 4 0;
 #X connect 7 0 6 1;
-#X connect 8 0 7 0;
+#X connect 9 0 7 0;
