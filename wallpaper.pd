@@ -1,17 +1,39 @@
 #N canvas 8 231 648 499 10;
-#N canvas 481 619 450 300 spackle 0;
+#N canvas 538 50 787 346 spackle 0;
 #X text 24 5 spackle;
 #X obj 164 29 noise~;
 #X obj 122 225 outlet~;
 #X obj 228 222 outlet~;
 #X floatatom 177 163 5 0 5 0 volume - -, f 5;
-#X floatatom 90 88 5 0 0 2 centre - -, f 5;
-#X floatatom 244 88 5 0 0 2 centre - -, f 5;
+#X floatatom 33 90 5 0 0 2 spackle-centre-l spackle-centre-l -, f
+5;
+#X floatatom 244 88 5 0 0 2 spakcle-centre-r spackle-centre-r -, f
+5;
 #X floatatom 164 88 5 0 0 2 Q - -, f 5;
 #X obj 122 121 bp~ 144 0.8;
 #X obj 228 118 bp~ 205 0.8;
 #X obj 122 203 *~ 0.4;
 #X obj 228 200 *~ 0.4;
+#X obj 365 100 drunk-pulse 60000 900000 300000;
+#X obj 476 44 tgl 15 0 empty spackle-centre-wander spackle-centre-wander
+17 7 0 10 -262144 -1 -1 1 1;
+#X obj 365 122 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 365 218 line;
+#X obj 365 142 random 70;
+#X obj 365 174 + 140;
+#X obj 365 240 s spackle-centre-l;
+#X obj 572 102 drunk-pulse 60000 900000 300000;
+#X obj 572 124 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 572 220 line;
+#X obj 572 144 random 70;
+#X obj 572 176 + 140;
+#X obj 572 242 s spackle-centre-r;
+#X msg 365 196 \$1 3000;
+#X msg 572 198 \$1 3000;
+#X obj 489 125 loadbang;
+#X msg 489 147 35;
 #X connect 1 0 8 0;
 #X connect 1 0 9 0;
 #X connect 4 0 10 1;
@@ -24,8 +46,25 @@
 #X connect 9 0 11 0;
 #X connect 10 0 2 0;
 #X connect 11 0 3 0;
+#X connect 12 0 14 0;
+#X connect 13 0 12 0;
+#X connect 13 0 19 0;
+#X connect 14 0 16 0;
+#X connect 15 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 25 0;
+#X connect 19 0 20 0;
+#X connect 20 0 22 0;
+#X connect 21 0 24 0;
+#X connect 22 0 23 0;
+#X connect 23 0 26 0;
+#X connect 25 0 15 0;
+#X connect 26 0 21 0;
+#X connect 27 0 28 0;
+#X connect 28 0 17 0;
+#X connect 28 0 23 0;
 #X restore 128 55 pd spackle;
-#N canvas 220 63 545 599 clicks 0;
+#N canvas 609 35 545 622 clicks 0;
 #X obj 40 46 noise~;
 #X obj 125 180 *~;
 #X obj 77 352 outlet~;
@@ -96,7 +135,7 @@
 #X obj 466 127 *~;
 #X obj 486 39 vsl 15 50 0 1 0 0 empty bloops-level empty 0 -9 0 10
 -262144 -1 -1 2450 1;
-#N canvas 397 49 557 625 bloops 0;
+#N canvas 587 86 557 648 bloops 0;
 #X obj 86 133 noise~;
 #X obj 173 295 *~;
 #X obj 123 439 outlet~;
@@ -133,7 +172,7 @@
 #X floatatom 228 374 5 0 0 0 - - -, f 5;
 #X floatatom 298 392 5 0 0 0 - - -, f 5;
 #X obj 333 44 drunk-pulse 60000 600000 60000;
-#X obj 338 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 338 72 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 406 215 700 200 5000 500;
 #X obj 372 91 drunk-pulse 7000 20000 20000;
@@ -177,9 +216,9 @@
 #X obj 225 304 output~;
 #N canvas 462 429 450 323 set-defaults 0;
 #X obj 42 20 loadbang;
-#X msg 42 42 \; pd dsp 1 \; output-ctl 1 \; roomsize 0.33 \; clicks-level
-0.5 \; clicks-toggle 1 \; bloops-level 0.5 \; bloops-toggle 1 \; screeps-level
-0.1 \; screeps-toggle 1 \;;
+#X msg 42 42 \; pd dsp 1 \; output-ctl 1 \; roomsize 0.33 \; spackle-centre-wander
+1 \; clicks-level 0.5 \; clicks-toggle 1 \; bloops-level 0.5 \; bloops-toggle
+1 \; screeps-level 0.1 \; screeps-toggle 1 \;;
 #X connect 0 0 1 0;
 #X restore 545 473 pd set-defaults;
 #X obj 308 277 r output-ctl;
@@ -212,7 +251,7 @@
 #X obj 366 43 tgl 15 0 empty screeps-toggle empty 17 7 0 10 -262144
 -1 -1 1 1;
 #X obj 249 230 hsl 50 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 294 1;
+-1 -1 0 1;
 #X floatatom 249 250 5 0 0 0 - - -, f 5;
 #X obj 87 210 osc~ 220;
 #X obj 171 220 bp~ 90 65;
